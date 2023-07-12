@@ -116,14 +116,15 @@ class Linkedlist:
     # Reserse
     def reverse(self):
         """Function to Reverse the Linked list"""
-        temp = self.head
+        current = self.head
         self.head = self.tail
-        self.tail = temp
-        after = temp.next
-        before = None
+        self.tail = current
+
+        # after = current.next
+        # before = None
 
         for _ in range(self.length):
-            after = temp.next
-            temp.next = before
-            before = temp
-            temp = after
+            after = current.next
+            current.next = before
+            before = current
+            current = after
