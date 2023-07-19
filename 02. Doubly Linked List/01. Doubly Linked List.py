@@ -4,6 +4,7 @@ class Node():
         self.next = None
         self.prev = None
 
+
 class doublyLinkedlist:
     def __init__(self) -> None:
         # new_node = Node(value)
@@ -11,18 +12,24 @@ class doublyLinkedlist:
         self.tail = None
         self.length = 0
 
-    # Print List    
+    # Print List
     def printList(self):
         temp_node = self.head
         while (temp_node != None):
             # print ("% d" %temp_node.value)
-            print(str(temp_node.value) + " <-> ", end = "")
+            print(str(temp_node.value) + " <-> ", end="")
             temp_node = temp_node.next
-    
+
+    # Print List via head
+    def print_ll_head(self, head):
+        while head is not None:
+            print(str(head.value) + " -> ", end="")
+            head = head.next
+
     # Append
     def append(self, value):
         newNode = Node(value)
-        if not self.head and not self.tail :
+        if not self.head and not self.tail:
             self.head = newNode
             self.tail = newNode
         else:
@@ -31,10 +38,10 @@ class doublyLinkedlist:
             newNode.prev = currentTailNode
             self.tail = newNode
         self.length += 1
-    
+
     # Pop
     def pop(self):
-        
+
         currentNodeToRemove = self.tail
         if self.length == 0:
             return None
@@ -50,9 +57,9 @@ class doublyLinkedlist:
             # print("Removed Value:", removedValue)
 
         self.length -= 1
-    
+
     # Prepend
-    def prepend(self , value ):
+    def prepend(self, value):
         newNode = Node(value)
         if self.length == 0:
             self.head = newNode
@@ -63,7 +70,7 @@ class doublyLinkedlist:
             self.head = newNode
         self.length += 1
         return True
-    
+
     # Pop first
     def popFirst(self):
         if self.length == 0:
@@ -87,8 +94,8 @@ class doublyLinkedlist:
         if 0 < index >= self.length:
             raise IndexError("Index out of range")
             return None
-        current_node=self.head
-        for i in range (index):
+        current_node = self.head
+        for i in range(index):
             current_node = current_node.next
         # print(current_node.value)
         return current_node
@@ -101,7 +108,7 @@ class doublyLinkedlist:
             # print (f"Old value at {index} is: {oldValue}, New Value is : {newValue}")
             return True
         return False
-        
+
     # Insert
     def insert(self, index, newValue):
         if index < 0 or index > self.length:

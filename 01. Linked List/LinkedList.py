@@ -4,15 +4,17 @@ class Node:
         self.next = None
 
 
-class Linkedlist:
+class LinkedList:
     def __init__(self) -> None:
-        # new_node = Node(value)
         self.head = None
         self.tail = None
         self.length = 0
 
     # Print List
     def print_list(self):
+        """
+        Prints the values of all nodes in the linked list.
+        """
         temp = self.head
         while temp is not None:
             # print(temp.value)
@@ -21,12 +23,18 @@ class Linkedlist:
 
     # Print List via head
     def print_ll_head(self, head):
+        """
+        Prints the values of all nodes in the linked list starting from the given head node.
+        """
         while head is not None:
             print(str(head.value) + " -> ", end="")
             head = head.next
 
     # Append
     def append(self, value) -> None:
+        """
+        Appends a new node with the given value to the end of the linked list.
+        """
         new_node = Node(value)
         if self.head == None:  # empty list case
             self.head = new_node
@@ -39,6 +47,9 @@ class Linkedlist:
 
     # Pop
     def pop(self) -> None:
+        """
+        Removes and returns the last node from the linked list.
+        """
         if self.length == 0:
             return None
 
@@ -57,6 +68,9 @@ class Linkedlist:
 
     # Prepend
     def prepend(self, value):
+        """
+        Adds a new node with the given value at the beginning of the linked list.
+        """
         new_node = Node(value)
         if self.length == 0:
             self.head = new_node
@@ -69,6 +83,9 @@ class Linkedlist:
 
     # POP First
     def pop_first(self):
+        """
+        Removes and returns the first node from the linked list.
+        """
         if self.length == 0:
             return None
         temp = self.head
@@ -81,6 +98,10 @@ class Linkedlist:
 
     # Get
     def get(self, index):
+        """
+        Returns the node at the specified index in the linked list.
+        If the index is out of range, returns None.
+        """
         if index < 0 or index >= self.length:
             # raise IndexError("Index out of range")
             return None
@@ -91,6 +112,10 @@ class Linkedlist:
 
     # Set
     def set_value(self, index, value):
+        """
+        Updates the value of the node at the specified index in the linked list.
+        Returns True if the update is successful, False otherwise.
+        """
         temp = self.get(index)
         # if not temp is None:
         if temp:
@@ -100,6 +125,10 @@ class Linkedlist:
 
     # Insert
     def insert(self, index, newValue):
+        """
+        Inserts a new node with the given value at the specified index in the linked list.
+        Returns True if the insertion is successful, False otherwise.
+        """
         if index < 0 or index > self.length:
             return False
         if index == 0:
@@ -113,9 +142,11 @@ class Linkedlist:
         self.length += 1
         return True
 
-    # Reserse
+    # Reverse
     def reverse(self):
-        """Function to Reverse the Linked list"""
+        """
+        Reverses the order of nodes in the linked list.
+        """
         current = self.head
         self.head = self.tail
         self.tail = current

@@ -5,31 +5,38 @@ class Node():
         self.prev = None
 
 
-class doublyLinkedlist:
+class DoublyLinkedList:
     def __init__(self) -> None:
-        # new_node = Node(value)
         self.head = None
         self.tail = None
         self.length = 0
 
     # Print List
     def printList(self):
+        """
+        Prints the elements of the doubly linked list from head to tail.
+        """
         temp_node = self.head
-        while (temp_node != None):
-            # print ("% d" %temp_node.value)
+        while temp_node is not None:
             print(str(temp_node.value) + " <-> ", end="")
             temp_node = temp_node.next
 
     # Print List via head
     def print_ll_head(self, head):
+        """
+        Prints the elements of the doubly linked list given a specific head node.
+        """
         while head is not None:
             print(str(head.value) + " -> ", end="")
             head = head.next
 
     # Append
     def append(self, value):
+        """
+        Appends a new node with the given value to the end of the doubly linked list.
+        """
         newNode = Node(value)
-        if not self.head and not self.tail:
+        if not self.head and not self.tail:  # Empty list
             self.head = newNode
             self.tail = newNode
         else:
@@ -41,27 +48,28 @@ class doublyLinkedlist:
 
     # Pop
     def pop(self):
-
+        """
+        Removes the last node from the doubly linked list.
+        """
         currentNodeToRemove = self.tail
-        if self.length == 0:
+        if self.length == 0:  # Empty list
             return None
-        if self.length == 1:
+        if self.length == 1:  # Only one node in the list
             self.head = None
             self.tail = None
         else:
             self.tail = self.tail.prev
             self.tail.next = None
             currentNodeToRemove.prev = None
-            # removedValue = currentNodeToRemove.value
-            # del currentNodeToRemove
-            # print("Removed Value:", removedValue)
-
         self.length -= 1
 
     # Prepend
     def prepend(self, value):
+        """
+        Prepends a new node with the given value to the beginning of the doubly linked list.
+        """
         newNode = Node(value)
-        if self.length == 0:
+        if self.length == 0:  # Empty list
             self.head = newNode
             self.tail = newNode
         else:
@@ -69,13 +77,15 @@ class doublyLinkedlist:
             newNode.next = self.head
             self.head = newNode
         self.length += 1
-        return True
 
     # Pop first
     def popFirst(self):
-        if self.length == 0:
+        """
+        Removes the first node from the doubly linked list.
+        """
+        if self.length == 0:  # Empty list
             return None
-        if self.length == 1:
+        if self.length == 1:  # Only one node in the list
             self.head = None
             self.tail = None
         else:
@@ -83,34 +93,37 @@ class doublyLinkedlist:
             self.head = self.head.next
             self.head.prev = None
             tempNode.next = None
-            # deletedValue = tempNode.value
-            # del tempNode
-            # print('Deleted:',deletedValue )
         self.length -= 1
 
     # Get
     def get(self, index):
-        # if index < 0 or index >= self.length:
+        """
+        Retrieves the node at the given index in the doubly linked list.
+        """
         if 0 < index >= self.length:
             raise IndexError("Index out of range")
             return None
         current_node = self.head
         for i in range(index):
             current_node = current_node.next
-        # print(current_node.value)
         return current_node
 
     # Set
     def set(self, index, newValue):
+        """
+        Sets the value of the node at the given index in the doubly linked list.
+        """
         nodeToChange = self.get(index)
         if nodeToChange:
             nodeToChange.value = newValue
-            # print (f"Old value at {index} is: {oldValue}, New Value is : {newValue}")
             return True
         return False
 
     # Insert
     def insert(self, index, newValue):
+        """
+        Inserts a new node with the given value at the specified index in the doubly linked list.
+        """
         if index < 0 or index > self.length:
             return False
         if index == 0:
@@ -124,11 +137,11 @@ class doublyLinkedlist:
         temp.next = newNode
         self.length += 1
 
-        # temp = self.tail
-        # newNode.nex
-
     # Remove by index
     def remove(self, index):
+        """
+        Removes the node at the specified index from the doubly linked list.
+        """
         if 0 < index >= self.length:
             return None
         if index == 0:
@@ -140,7 +153,6 @@ class doublyLinkedlist:
         nextNode = currentNodeToRemove.next
         prevNode.next = nextNode
         nextNode.prev = prevNode
-        # del currentNodeToRemove
         currentNodeToRemove.prev = None
         currentNodeToRemove.next = None
         self.length -= 1
