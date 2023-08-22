@@ -26,7 +26,7 @@ class Queue:
     # Print Queue
     def printQueue(self):
         current = self.first
-        while current != None:
+        while current is not None:
             print(current.value)
             current = current.next
 
