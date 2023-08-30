@@ -29,6 +29,14 @@ class Graph:
             return True
         return False
 
+    def remove_vertex(self, vertex):
+        if vertex in self.adj_list.keys():
+            for other_vertex in self.adj_list[vertex]:
+                self.adj_list[other_vertex].remove(vertex)
+            del self.adj_list[vertex]
+            return True
+        return False
+
 
 my_graph = Graph()
 
@@ -41,9 +49,21 @@ my_graph.add_vertex('C')
 my_graph.add_vertex('D')
 
 my_graph.add_edge('A', 'B')
+my_graph.add_edge('A', 'C')
+my_graph.add_edge('B', 'D')
 my_graph.add_edge('B', 'C')
-my_graph.add_edge('C', 'A')
+my_graph.add_edge('C', 'D')
 
-my_graph.remove_edge('A', 'D')
+# my_graph.remove_edge('A', 'D')
+
+print("Original Graph:")
+
+my_graph.print_graph()
+
+print("\n")
+
+my_graph.remove_vertex('D')
+
+print("After removing vertex:")
 
 my_graph.print_graph()
